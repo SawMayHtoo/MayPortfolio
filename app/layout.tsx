@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description:
     "Personal portfolio of a Myanmar student in Thailand, passionate about computer science and technology innovation.",
   generator: "v0.app",
+  icons: {
+    icon: "/Mayicon.png",
+  },
 }
 
 export default function RootLayout({

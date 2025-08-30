@@ -14,7 +14,7 @@ export default function IntroScreen({ onComplete }: IntroScreenProps) {
   const [typedText, setTypedText] = useState("")
   const [showTyping, setShowTyping] = useState(false)
 
-  const fullText = "www.metthew.vercel.app"
+  const fullText = "www.matthew.vercel.app"
 
   useEffect(() => {
     const timer1 = setTimeout(() => setShowText(true), 1000)
