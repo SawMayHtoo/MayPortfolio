@@ -273,24 +273,113 @@ export default function HomePage() {
 
         <section className="py-20">
           <div className="container mx-auto px-6 text-center">
-            <Card className="bg-white/5 backdrop-blur-lg border-white/10 max-w-2xl mx-auto">
+            <Card className="bg-white/5 backdrop-blur-lg border-white/10 max-w-4xl mx-auto">
               <CardContent className="p-8">
                 <h2 className="text-2xl font-bold text-white mb-4">Let's Connect!</h2>
                 <p className="text-white/80 mb-6">
                   I'm excited to connect with universities, mentors, and fellow students. Let's discuss opportunities in
                   computer science!
                 </p>
+                
+                {/* Contact Information */}
+                <div className="grid md:grid-cols-2 gap-6 mb-8">
+                  <div className="bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-cyan-500/20 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-cyan-300 mb-2">Email</h3>
+                    <p className="text-white/70">sawmayhtoo@outlook.com</p>
+                  </div>
+                  <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg p-6">
+                    <h3 className="text-lg font-semibold text-purple-300 mb-2">Phone</h3>
+                    <p className="text-white/70">+66 611 345 951</p>
+                  </div>
+                </div>
+
+                {/* Download Buttons */}
+                <div className="flex flex-wrap justify-center gap-4 mb-8">
+                  <Button
+                    className="bg-gradient-to-r from-cyan-600 to-purple-600 hover:from-cyan-700 hover:to-purple-700 text-white px-6 py-3"
+                    onClick={() => {
+                      const link = document.createElement("a")
+                      link.href = "/Mayresume.png"
+                      link.download = "Mayresume.png"
+                      document.body.appendChild(link)
+                      link.click()
+                      document.body.removeChild(link)
+                    }}
+                  >
+                    Download Resume
+                  </Button>
+                  <Button
+                    variant="outline"
+                    className="border-white/20 text-white hover:bg-white/10 px-6 py-3 bg-transparent"
+                  >
+                    Download CV
+                  </Button>
+                  <Button
+                    className="bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-700 hover:to-purple-700 text-white px-6 py-3"
+                    onClick={() => window.open('https://mpschoolatetest.my.canva.site/may-portfolio', '_blank')}
+                  >
+                    See My Portfolio
+                  </Button>
+                </div>
+
+                {/* Social Media Links */}
                 <div className="flex flex-wrap justify-center gap-4">
                   {[
                     { icon: Github, label: "GitHub", href: "#" },
                     { icon: Linkedin, label: "LinkedIn", href: "#" },
-                    { icon: Instagram, label: "Instagram", href: "#" },
-                    { icon: Mail, label: "Email", href: "mailto:your.email@example.com" },
+                    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/nextbymatth/" },
+                    { 
+                      icon: Mail, 
+                      label: "Email", 
+                      href: "#",
+                      onClick: (e) => {
+                        e.preventDefault();
+                        const email = "sawmayhtoo@outlook.com";
+                        const subject = "Portfolio Inquiry";
+                        const body = "Hello,\n\nI would like to connect with you regarding your portfolio.\n\nBest regards,";
+                        
+                        // Create a dropdown menu for email options
+                        const dropdown = document.createElement('div');
+                        dropdown.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/50';
+                        dropdown.innerHTML = `
+                          <div class="bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg p-6 max-w-sm w-full mx-4">
+                            <h3 class="text-lg font-semibold text-white mb-4 text-center">Choose Email Service</h3>
+                            <div class="space-y-3">
+                              <button class="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-4 py-3 rounded-lg transition-all duration-300" onclick="window.open('mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}', '_blank')">
+                                📧 Default Email Client
+                              </button>
+                              <button class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-4 py-3 rounded-lg transition-all duration-300" onclick="window.open('https://outlook.live.com/mail/0/deeplink/compose?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}', '_blank')">
+                                🌐 Outlook Web
+                              </button>
+                              <button class="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-4 py-3 rounded-lg transition-all duration-300" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}', '_blank')">
+                                🌐 Gmail
+                              </button>
+                              <button class="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white px-4 py-3 rounded-lg transition-all duration-300" onclick="window.open('https://mail.yahoo.com/compose?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}', '_blank')">
+                                🌐 Yahoo Mail
+                              </button>
+                            </div>
+                            <button class="w-full mt-4 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-all duration-300" onclick="this.closest('.fixed').remove()">
+                              Cancel
+                            </button>
+                          </div>
+                        `;
+                        
+                        document.body.appendChild(dropdown);
+                        
+                        // Close dropdown when clicking outside
+                        dropdown.addEventListener('click', (e) => {
+                          if (e.target === dropdown) {
+                            dropdown.remove();
+                          }
+                        });
+                      }
+                    },
                   ].map((social, index) => (
                     <a
                       key={index}
                       href={social.href}
-                      className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-all duration-300"
+                      onClick={social.onClick}
+                      className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 hover:text-white transition-all duration-300 cursor-pointer"
                     >
                       <social.icon className="w-4 h-4" />
                       <span className="text-sm font-medium">{social.label}</span>

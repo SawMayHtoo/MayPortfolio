@@ -14,7 +14,7 @@ export default function Introduction({ onComplete }: IntroductionProps) {
   const [isComplete, setIsComplete] = useState(false)
   const [moveHeaderUp, setMoveHeaderUp] = useState(false)
 
-  const fullUrl = "www.metthew.vercel.app"
+  const fullUrl = "www.matthew.vercel.app"
 
   useEffect(() => {
     const welcomeTimer = setTimeout(() => {
